@@ -1,7 +1,5 @@
 // Inputs de movimento
-rightKey = keyboard_check( vk_right );
-leftKey = keyboard_check( vk_left );
-jumpKeyPressed = keyboard_check_pressed( vk_up );
+movement_inputs();
 
 //Direção
 moveDir = rightKey - leftKey
@@ -38,7 +36,9 @@ xspd = moveDir * moveSpd
 		}
 	
 	// Pulo
-	if jumpKeyPressed && place_meeting(x, y+1, oWall){
+	if jumpKeyBuffered && place_meeting(x, y+1, oWall){
+		jumpKeyBuffered = false;
+		jumpKeyBufferTimer = 0
 		yspd = jspd;
 	}
 	
